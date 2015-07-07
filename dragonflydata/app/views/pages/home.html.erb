@@ -1,8 +1,32 @@
 
 <div class="container search-panel">
   <div class="form-group col-sm-6 col-sm-offset-2">
-    <h1>Search Github Repos by DBC Cohort</h1>
-    <input type="text" name="cohort" class="form-control" placeholder="NYC Dragonflies"/><br/>
+    <h1>BootTracker</h1>
+    <div class="search-tools">
+      <div class="filters">
+        <div class="filter">
+          <label>Cohorts</label>
+          <div class="labels">
+            <ol>
+              <li>
+                <input id="dragonflies" type="checkbox" class="check">
+                <label for="dragonflies">NYC Dragonflies</label>
+              </li>
+              <li>
+                <input id="fiery-skippers" type="checkbox" class="check">
+                <label for="fiery-skippers">NYC Fiery Skippers</label>
+              </li>
+              <li>
+                <input id="pocket-gophers" type="checkbox" class="check">
+                <label for="pocket-gophers">NYC Pocket Gophers</label>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </div><br/>
+
     <button class="btn btn-lg btn-primary">Find most recent repos</button>
   </div>
 </div>

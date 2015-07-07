@@ -2,6 +2,16 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
 
+  $('.check').on('click', function() {
+    var that = this;
+    for(i=0;i<3;i++) {
+      $('.check')[i].checked = false;
+      this.checked = true;
+
+    }
+
+  });
+
   // navigation to respond to screen resizing
   var menuToggle = $('#js-mobile-menu').unbind();
   $('#js-navigation-menu').removeClass("show");
@@ -15,12 +25,35 @@ $(document).ready(function() {
     });
   });
 
+  var page = 1;
+
   // AJAX call to get most recent repositories of DBC students
-  var usernames = ["tgoldenberg", "alcsatt", "benjamincohen1989", "tekd", "JMC11", "sevennote", "julia-castro", "lowellmower", "mcardacci", "michaelbbozza", "grapefruitricky", "shmartin", "sixthand6th", "johnlyden"];
+  var NYC_POCKET_GOPHERS = ["aceburgess", "AlexTaber", "aperezmontan", "HanuMaIV", "Doralyp", "echenique11", "ScottBWar", "fishermanng", "sidwatal", "TTrinkle"];
+  var NYC_BUMBLEBEES = [];
+  var NYC_FIERY_SKIPPERS = ["manentea", "NIkocal", "benlights", "laurisbernhart", "Dholness2", "sbelkin88"];
+  var NYC_DRAGONFLIES = ["tgoldenberg", "alcsatt", "benjamincohen1989", "tekd", "JMC11", "sevennote", "julia-castro", "lowellmower", "mcardacci", "michaelbbozza", "grapefruitricky", "shmartin", "sixthand6th", "johnlyden"];
   var githubUrl = "https://api.github.com/users/";
   $('.btn-lg').on('click', function(e) {
     e.preventDefault();
-    usernames.forEach(function(element, idx) {
+    var cohort = $('.summary').html();
+    var AJAXCohort = NYC_DRAGONFLIES;
+    switch(cohort) {
+      case "NYC Fiery Skippers":
+        AJAXCohort = NYC_FIERY_SKIPPERS;
+      break;
+      case "NYC Dragonflies":
+        AJAXCohort = NYC_DRAGONFLIES;
+        break;
+      case "NYC Pocket Gophers":
+        AJAXCohort = NYC_POCKET_GOPHERS;
+      break;
+      default:
+        AJAXCohort = NYC_DRAGONFLIES;
+      break;
+    }
+    console.log(cohort);
+    $('.user-profile').remove();
+    AJAXCohort.forEach(function(element, idx) {
       var username = element;
       var index = idx + 1;
 
