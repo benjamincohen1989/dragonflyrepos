@@ -1,3 +1,23 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.user-profile {
+  border-top: 1px solid #bbb;
+  display: flex;
+  height: inherit;
+  .user-avatar {
+    width: 200px;
+    height: inherit;
+    background: #e6e6e6;
+    text-align: center;
+    img {
+      width: 150px;
+      margin-top: 10px;
+    }
+
+  }
+  .user-info {
+    margin-left: 20px;
+
+  }
+}
