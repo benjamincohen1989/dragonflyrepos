@@ -13,21 +13,32 @@ $(document).ready(function() {
     });
   });
   var totalRepos = [];
-  var usernames = ["tgoldenberg"];
-  var githubUrl = "https://api.github.com/";
-  usernames.forEach(function(element, idx) {
-    $.ajax({
-      url: githubUrl + element + "/repos?access_token=" + ENV["github_token"],
-      method: "get",
-      dataType: "json",
-      data: {usernames: usernames}
-    }).done(function(data) {
-      $('.display-panel').append('<p><a href="' + data["url"] + '">' + data["name"] + "</a></p>");
-    }).fail(function(error) {
-      console.log(error)
-    });
-  });
+  var usernames = ["tgoldenberg", "alcsatt", "benjamin.cohen1989", "tekd", "JMC11", "sevennote", "julia-castro", "lowellmower", "mcardacci", "michaelbbozza", "grapefruittricky", "shmartin", "sixthand6th"];
+  var githubUrl = "https://api.github.com/users/";
+  $('.btn-lg').on('click', function(e) {
+    e.preventDefault();
+    usernames.forEach(function(element, idx) {
+      var username = element;
 
+      $.ajax({
+        url: githubUrl + element + "/repos?sort=created?access_token=e700c6f603d1ac7881c31d703e315e22bb044ddc",
+        method: "get",
+        dataType: "json",
+        data: {usernames: usernames}
+      }).done(function(data) {
+        var element = '<h4>'+ username + '</h4><hr/>';
+        data.forEach(function(repo, idx) {
+          if (idx < 3) {
+            element += '<p><a href="' + repo["html_url"] + '">' + repo["name"] + " || " + repo["created_at"] + "</a></p>";
+          }
+        });
+        $('.display-panel').append(element);
+
+      }).fail(function(error) {
+        console.log(error)
+      });
+    });
+  })
 });
 
 
