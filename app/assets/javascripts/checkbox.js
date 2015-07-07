@@ -69,11 +69,11 @@ var Filter = (function() {
   };
 
   Filter.prototype._updateSummary = function() {
-    var summary = 'Choose a cohort';
+    var summary = 'All';
     var checked = this._checkboxes().filter(':checked');
 
     if (checked.length > 0 && checked.length < this._checkboxes().length) {
-      summary = this._labelsFor(checked)[checked.length-1];
+      summary = this._labelsFor(checked).join(', ');
     }
 
     this._summaryElement.text(summary);
@@ -108,3 +108,4 @@ var Filter = (function() {
 $(function() {
   Filter.enhance();
 });
+

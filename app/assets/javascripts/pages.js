@@ -4,9 +4,11 @@ $(document).ready(function() {
 
   $('.check').on('click', function() {
     var that = this;
-    for(i=0;i<3;i++) {
+    for(i=0;i<6;i++) {
       $('.check')[i].checked = false;
       this.checked = true;
+      id = $(this).attr('id');
+      $('.summary').html(id);
 
     }
 
@@ -27,9 +29,11 @@ $(document).ready(function() {
 
   var page = 1;
 
-  // AJAX call to get most recent repositories of DBC students
+  // AJAX call to get most recent repositories of DBC students/\
+  var CHICAGO_DRAGONFLIES = ["ac-adekunle", "amberzilla", "boguth", "withtwoemms", "H12", "mccallumjack", "jasonpettus", "joeaawad", "Faithsend", "michaelkunc", "bwootten", "nsiefken", "pmacaluso3"];
+  var SANFRAN_DRAGONFLIES = ["cusackalex", "alexrkass", "achen116", "keops6fr", "briankennedy1", "carissablossom", "dgrotting", "cutofmyjib", "edisonocean", "ellismarte", "erictflores", "Andrelton", "jnewman12", "jchang2014", "jengjao515", "joshullman", "karanaditya993", "klvngnn", "LTran1231", "iMikie", "PatrickShelby", "Sbsample", "tarora2014", "vpoola88"];
   var NYC_POCKET_GOPHERS = ["aceburgess", "AlexTaber", "aperezmontan", "HanuMaIV", "Doralyp", "echenique11", "ScottBWar", "fishermanng", "sidwatal", "TTrinkle"];
-  var NYC_BUMBLEBEES = [];
+  var NYC_BUMBLEBEES = ["AlinaJahnes", "aderend", "christineschatz", "gp3gp3gp3", "gechro", "billkozby83", "maze130", "hukashi", "GLNRO", "Sihong31", "sayuloveit"];
   var NYC_FIERY_SKIPPERS = ["manentea", "NIkocal", "benlights", "laurisbernhart", "Dholness2", "sbelkin88"];
   var NYC_DRAGONFLIES = ["tgoldenberg", "alcsatt", "benjamincohen1989", "tekd", "JMC11", "sevennote", "julia-castro", "lowellmower", "mcardacci", "michaelbbozza", "grapefruitricky", "shmartin", "sixthand6th", "johnlyden"];
   var githubUrl = "https://api.github.com/users/";
@@ -38,20 +42,29 @@ $(document).ready(function() {
     var cohort = $('.summary').html();
     var AJAXCohort = NYC_DRAGONFLIES;
     switch(cohort) {
-      case "NYC Fiery Skippers":
+      case "nyc-fiery-skippers":
         AJAXCohort = NYC_FIERY_SKIPPERS;
       break;
-      case "NYC Dragonflies":
+      case "nyc-dragonflies":
         AJAXCohort = NYC_DRAGONFLIES;
         break;
-      case "NYC Pocket Gophers":
+      case "nyc-pocket-gophers":
         AJAXCohort = NYC_POCKET_GOPHERS;
+      break;
+      case "nyc-bumblebees":
+        AJAXCohort = NYC_BUMBLEBEES;
+      break;
+      case "chicago-dragonflies":
+        AJAXCohort = CHICAGO_DRAGONFLIES;
+      break;
+     case "sanfran-dragonflies":
+        AJAXCohort = SANFRAN_DRAGONFLIES;
       break;
       default:
         AJAXCohort = NYC_DRAGONFLIES;
       break;
     }
-    console.log(cohort);
+    console.log(cohort, AJAXCohort);
     $('.user-profile').remove();
     AJAXCohort.forEach(function(element, idx) {
       var username = element;
